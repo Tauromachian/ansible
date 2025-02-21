@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! command -v ansible > /dev/null 2>&1; then
-    sudo apt install software-properties-common
+    sudo apt install -y software-properties-common
     sudo apt-add-repository -y ppa:ansible/ansible
     sudo apt update -y
     sudo apt install -y ansible
