@@ -40,3 +40,11 @@
     create: true
   when: not brew_stat.stat.exists
 
+- name: Install Homebrew packages
+  community.general.homebrew:
+    name:
+      - podman
+      - neovim
+    state: present
+  become: false
+
