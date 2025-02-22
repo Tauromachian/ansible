@@ -32,6 +32,13 @@
   failed_when: brew_install.rc != 0
   when: not brew_stat.stat.exists
 
+- name: Update Homebrew after install
+  ansible.builtin.command: "/home/linuxbrew/.linuxbrew/bin/brew update"
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+  become: false
+  when: not brew_stat.stat.exists
+
 - name: Add Homebrew to shell profile
   ansible.builtin.lineinfile:
     path: "{{ ansible_env.HOME }}/.bashrc"
@@ -41,10 +48,10 @@
   when: not brew_stat.stat.exists
 
 - name: Install Homebrew packages
+  become: false
   community.general.homebrew:
     name:
       - podman
       - neovim
     state: present
-  become: false
 
