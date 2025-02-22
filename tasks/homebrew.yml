@@ -31,3 +31,12 @@
   register: brew_install
   failed_when: brew_install.rc != 0
   when: not brew_stat.stat.exists
+
+- name: Add Homebrew to shell profile
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    line: 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+    state: present
+    create: true
+  when: not brew_stat.stat.exists
+
