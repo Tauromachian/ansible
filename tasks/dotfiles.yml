@@ -1,3 +1,8 @@
+- name: Check if cloned folder exists
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles"
+  register: folder_stat
+
 - name: Clone a git repository
   ansible.builtin.git:
     repo: 'https://github.com/Tauromachian/dotfiles.git'
@@ -8,8 +13,10 @@
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     state: absent
+  when: not folder_stat.stat.exists
 
 - name: Run stow for dotfiles
   ansible.builtin.shell:
     cmd: "/bin/bash install.sh"
     chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
+  when: not folder_stat.stat.exists
