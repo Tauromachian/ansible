@@ -7,4 +7,5 @@
     - include_tasks: tasks/homebrew.yml
     # - include_tasks: tasks/podman.yml
     - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/alacritty.yml
     - include_tasks: tasks/nvidia.yml
