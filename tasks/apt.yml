@@ -19,4 +19,5 @@
       - samba
       - curl
       - neofetch
+      - stow
     state: present
