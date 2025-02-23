@@ -53,5 +53,6 @@
     name:
       - podman
       - neovim
+      - brew
     state: present
 
