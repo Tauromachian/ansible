@@ -3,3 +3,13 @@
     repo: 'https://github.com/Tauromachian/dotfiles.git'
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     version: main
+
+- name: Remove default .bashrc
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    state: absent
+
+- name: Run stow for dotfiles
+  ansible.builtin.shell:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    chdir: "/bin/bash install.sh"
