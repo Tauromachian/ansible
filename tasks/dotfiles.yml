@@ -11,5 +11,5 @@
 
 - name: Run stow for dotfiles
   ansible.builtin.shell:
-    path: "{{ lookup('env', 'HOME') }}/.dotfiles"
-    chdir: "/bin/bash install.sh"
+    cmd: "/bin/bash install.sh"
+    chdir: "{{ lookup('env', 'HOME') }}/.dotfiles"
