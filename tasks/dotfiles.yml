@@ -1,5 +1,5 @@
 - name: Clone a git repository
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/Tauromachian/dotfiles.git'
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     version: main
