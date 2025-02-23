@@ -53,6 +53,6 @@
     name:
       - podman
       - neovim
-      - brew
+      - starship
     state: present
 
