@@ -1,13 +1,16 @@
 - name: Add i386 architecture
+  become: true
   command: dpkg --add-architecture i386
 
 - name: Create directoy for keyrings
+  become: true
   file:
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
 
 - name: Download and Install WineHQ GPG key
+  become: true
   shell: |
     wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
   args:
@@ -16,6 +19,7 @@
   changed_when: gpg_key_result.rc == 0
 
 - name: Add repository
+  become: true
   shell: |
     wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
   args:
@@ -24,10 +28,12 @@
   changed_when: download_result.rc == 0
 
 - name: Update cache
+  become: true
   apt:
     update_cache: yes
 
 - name: Install wine
+  become: true
   apt:
     name: winehq-stable
     state: present
