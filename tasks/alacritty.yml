@@ -2,7 +2,7 @@
   ansible.builtin.git:
     repo: 'https://github.com/alacritty/alacritty.git'
     dest: "{{ lookup('env', 'HOME') }}/alacritty"
-    version: main
+    version: master
 
 - name: Install rustup and Rust compiler
   ansible.builtin.shell:
