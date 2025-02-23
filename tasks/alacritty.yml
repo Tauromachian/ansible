@@ -10,6 +10,13 @@
     creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/rustc"
   register: rustup_result
 
+- name: Run cargo build --release
+  ansible.builtin.command:
+    cmd: "cargo build --release"
+    chdir: "{{ lookup('env', 'HOME') }}/alacritty/my_rust_project"
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/alacritty/.cargo/bin:{{ ansible_env.PATH }}"
+
 - name: Copy Alacritty binary to /usr/local/bin
   ansible.builtin.copy:
     src: "{{ lookup('env', 'HOME') }}/target/release/alacritty"
