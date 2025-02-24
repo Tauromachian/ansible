@@ -9,3 +9,4 @@
     - include_tasks: tasks/dotfiles.yml
     - include_tasks: tasks/alacritty.yml
     - include_tasks: tasks/nvidia.yml
+    - include_tasks: tasks/nerd-font.yml

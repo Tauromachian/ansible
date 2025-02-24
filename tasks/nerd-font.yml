@@ -1,0 +1,17 @@
+- name: Ensure .fonts folder exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.fonts"
+    state: directory
+    mode: '0755'
+
+- name: Download Nerd Font
+  ansible.builtin.get_url:
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/CascadiaMono.zip
+    dest: "{{ lookup('env', 'HOME') }}/.fonts/CascadiaMono.zip"
+    mode: '0755'
+
+- name: Decompress Nerd Font ZIP into .fonts
+  ansible.builtin.unarchive:
+    src: "{{ lookup('env', 'HOME') }}/.fonts/CascadiaMono.zip"
+    dest: "{{ lookup('env', 'HOME') }}/.fonts"
+    remote_src: yes
