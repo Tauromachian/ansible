@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$EUID" -eq 0 ]; then
-  echo "Error: This script should not be run with sudo or as root."
+  echo "Error: Ansible will fail if you run this as root or with sudo"
   echo "Please run it as a regular user."
   exit 1
 fi
