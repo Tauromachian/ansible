@@ -1,7 +1,7 @@
 - name: Clone Alacritty
   ansible.builtin.git:
     repo: 'https://github.com/alacritty/alacritty.git'
-    dest: "{{ lookup('env', 'HOME') }}/alacritty"
+    dest: "{{ lookup('env', 'HOME') }}/Documents/alacritty"
     version: master
 
 - name: Install rustup and Rust compiler
@@ -13,27 +13,27 @@
 - name: Run cargo build --release
   ansible.builtin.command:
     cmd: "cargo build --release"
-    chdir: "{{ lookup('env', 'HOME') }}/alacritty"
+    chdir: "{{ lookup('env', 'HOME') }}/Documents/alacritty"
   environment:
-    PATH: "{{ lookup('env', 'HOME') }}/alacritty/.cargo/bin:{{ ansible_env.PATH }}"
+    PATH: "{{ lookup('env', 'HOME') }}/Documents/alacritty/.cargo/bin:{{ ansible_env.PATH }}"
 
 - name: Copy Alacritty binary to /usr/local/bin
   ansible.builtin.copy:
-    src: "{{ lookup('env', 'HOME') }}/alacritty/target/release/alacritty"
+    src: "{{ lookup('env', 'HOME') }}/Documents/alacritty/target/release/alacritty"
     dest: "/usr/local/bin/alacritty"
     mode: "0755"
   become: yes
 
 - name: Copy Alacritty logo to /usr/share/pixmaps
   ansible.builtin.copy:
-    src: "{{ lookup('env', 'HOME') }}/alacritty/extra/logo/alacritty-term.svg"
+    src: "{{ lookup('env', 'HOME') }}/Documents/alacritty/extra/logo/alacritty-term.svg"
     dest: "/usr/share/pixmaps/Alacritty.svg"
     mode: "0644"
   become: yes
 
 - name: Install Alacritty desktop file
   ansible.builtin.command:
-    cmd: "desktop-file-install {{ lookup('env', 'HOME') }}/alacritty/extra/linux/Alacritty.desktop"
+    cmd: "desktop-file-install {{ lookup('env', 'HOME') }}/Documents/alacritty/extra/linux/Alacritty.desktop"
     creates: "/usr/share/applications/Alacritty.desktop"
   become: yes
 
