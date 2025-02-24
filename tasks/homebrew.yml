@@ -59,6 +59,8 @@
 
 - name: Install Homebrew packages
   become: false
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
   community.general.homebrew:
     name:
       - podman
