@@ -16,12 +16,18 @@
   register: rustup_result
   when: cargo_exists is failed
 
+- name: Check if Alacritty is already compiled
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/Documents/alacritty/target/release/alacritty"
+  register: alacritty_binary_stat
+
 - name: Compile Alacritty
   ansible.builtin.command:
     cmd: "cargo build --release"
     chdir: "{{ lookup('env', 'HOME') }}/Documents/alacritty"
   environment:
     PATH: "{{ lookup('env', 'HOME') }}/Documents/alacritty/.cargo/bin:{{ ansible_env.PATH }}"
+  when: not alacritty_binary_stat.stat.exists
 
 - name: Copy Alacritty binary to /usr/local/bin
   ansible.builtin.copy:
