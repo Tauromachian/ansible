@@ -4,8 +4,8 @@
     dest: "{{ lookup('env', 'HOME') }}/Documents/auto-cpufreq"
     version: master
 
-- name: Install autocpu-freq
-  become: true
-  ansible.builtin.command:
-    cmd: "/bin/bash auto-cpufreq-installer"
-    chdir: "{{ lookup('env', 'HOME') }}/Documents/auto-cpufreq"
+# - name: Install autocpu-freq
+#   become: true
+#   ansible.builtin.command:
+#     cmd: "/bin/bash auto-cpufreq-installer"
+#     chdir: "{{ lookup('env', 'HOME') }}/Documents/auto-cpufreq"
