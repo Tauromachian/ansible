@@ -29,12 +29,18 @@
     PATH: "{{ lookup('env', 'HOME') }}/Documents/alacritty/.cargo/bin:{{ ansible_env.PATH }}"
   when: not alacritty_binary_stat.stat.exists
 
+- name: Check if Alacritty is installed
+  ansible.builtin.stat:
+    path: "/usr/share/pixmaps/Alacritty.svg"
+  register: alacritty_installed_stat
+
 - name: Copy Alacritty binary to /usr/local/bin
   ansible.builtin.copy:
     src: "{{ lookup('env', 'HOME') }}/Documents/alacritty/target/release/alacritty"
     dest: "/usr/local/bin/alacritty"
     mode: "0755"
   become: yes
+  when: not alacritty_installed_stat.stat.exists
 
 - name: Copy Alacritty logo to /usr/share/pixmaps
   ansible.builtin.copy:
@@ -42,14 +48,17 @@
     dest: "/usr/share/pixmaps/Alacritty.svg"
     mode: "0644"
   become: yes
+  when: not alacritty_installed_stat.stat.exists
 
 - name: Install Alacritty desktop file
   ansible.builtin.command:
     cmd: "desktop-file-install {{ lookup('env', 'HOME') }}/Documents/alacritty/extra/linux/Alacritty.desktop"
     creates: "/usr/share/applications/Alacritty.desktop"
   become: yes
+  when: not alacritty_installed_stat.stat.exists
 
 - name: Update desktop database
   ansible.builtin.command:
     cmd: "update-desktop-database"
   become: yes
+  when: not alacritty_installed_stat.stat.exists
