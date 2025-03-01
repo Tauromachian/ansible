@@ -11,7 +11,7 @@
 
 - name: Install rustup and Rust compiler
   ansible.builtin.shell:
-    cmd: "curl https://sh.rustup.rs -sSf | sh -- -y"
+    cmd: curl https://sh.rustup.rs -sSf | sh -- -y
     creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/rustc"
   register: rustup_result
   when: cargo_exists is failed
