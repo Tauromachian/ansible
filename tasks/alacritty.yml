@@ -16,7 +16,7 @@
   register: rustup_result
   when: cargo_exists is failed
 
-- name: Run cargo build --release
+- name: Compile Alacritty
   ansible.builtin.command:
     cmd: "cargo build --release"
     chdir: "{{ lookup('env', 'HOME') }}/Documents/alacritty"
