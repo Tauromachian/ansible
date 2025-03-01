@@ -4,11 +4,17 @@
     dest: "{{ lookup('env', 'HOME') }}/Documents/alacritty"
     version: master
 
+- name: Check if cargo is installed
+  shell: command -v cargo
+  register: cargo_exists
+  ignore_errors: yes
+
 - name: Install rustup and Rust compiler
   ansible.builtin.shell:
     cmd: "curl https://sh.rustup.rs -sSf | sh -- -y"
     creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/rustc"
   register: rustup_result
+  when: cargo_exists is failed
 
 - name: Run cargo build --release
   ansible.builtin.command:
