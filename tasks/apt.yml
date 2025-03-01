@@ -1,16 +1,16 @@
 - name: Update apt cache
   become: true
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
 
 - name: Upgrade all packages
   become: true
-  apt:
+  ansible.builtin.apt:
     upgrade: yes
 
 - name: Install common packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - gpick
       - gnome-boxes
