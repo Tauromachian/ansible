@@ -1,0 +1,12 @@
+- name: Check if nvm is installed
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
+  register: nvm_stat
+
+- name: Install nvm
+  ansible.builtin.shell: |
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | /bin/bash -s
+  args:
+    executable: /bin/bash
+  when: not nvm_stat.stat.exists
+
