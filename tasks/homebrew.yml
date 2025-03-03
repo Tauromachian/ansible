@@ -66,5 +66,6 @@
       - podman
       - neovim
       - starship
+      - ripgrep
     state: present
 
