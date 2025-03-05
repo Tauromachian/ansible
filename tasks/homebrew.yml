@@ -67,5 +67,6 @@
       - neovim
       - starship
       - ripgrep
+      - yt-dlp
     state: present
 
