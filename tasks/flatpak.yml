@@ -23,6 +23,7 @@
     - org.telegram.desktop
     - com.discordapp.Discord
     - com.brave.Browser
+    - com.usebruno.Bruno
 
 - name: Give Brave access to home
   shell: |
