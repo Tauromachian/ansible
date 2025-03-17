@@ -64,6 +64,7 @@
   community.general.homebrew:
     name:
       - podman
+      - podman-compose
       - neovim
       - starship
       - ripgrep
