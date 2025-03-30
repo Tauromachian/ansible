@@ -2,6 +2,7 @@
   hosts: localhost
   tasks:
     - include_tasks: tasks/apt.yml
+    - include_tasks: tasks/tmux.yml
     - include_tasks: tasks/gaming.yml
     - include_tasks: tasks/flatpak.yml
     - include_tasks: tasks/homebrew.yml
