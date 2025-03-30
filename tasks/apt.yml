@@ -28,4 +28,5 @@
       - libxcb-xfixes0-dev
       - libxkbcommon-dev
       - python3
+      - fzf
     state: present
