@@ -13,6 +13,7 @@
   ansible.builtin.apt:
     name:
       - gpick
+      - gparted
       - gnome-boxes
       - tmux
       - nala
