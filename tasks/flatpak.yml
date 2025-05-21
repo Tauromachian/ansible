@@ -9,7 +9,7 @@
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
-- name: Install Flatpak applications
+- name: Install Home Flatpak applications
   flatpak:
     name: "{{ item }}"
     state: present
@@ -24,6 +24,23 @@
     - com.discordapp.Discord
     - com.brave.Browser
     - com.usebruno.Bruno
+  tags:
+    - home
+
+- name: Install Work Flatpak applications
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+  loop:
+    - org.videolan.VLC
+    - com.obsproject.Studio
+    - org.shotcut.Shotcut
+    - com.calibre_ebook.calibre
+    - com.brave.Browser
+    - com.usebruno.Bruno
+  tags:
+    - work
 
 - name: Give Brave access to home
   shell: |
@@ -34,9 +51,13 @@
   shell: |
     flatpak override --user org.telegram.desktop --filesystem=home
   when: ansible_distribution == 'Ubuntu'
+  tags:
+    - home
 
 - name: Give Discord access to home
   shell: |
     flatpak override --user com.discordapp.Discord --filesystem=home
   when: ansible_distribution == 'Ubuntu'
+  tags:
+    - home
 
