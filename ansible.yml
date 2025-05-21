@@ -1,4 +1,4 @@
-- name: Home Workstation Setup
+- name: Home Setup
   hosts: localhost
   tasks:
     - include_tasks: tasks/apt.yml
@@ -17,7 +17,7 @@
   tags:
     - home
 
-- name: Workstation Setup
+- name: Work Setup
   hosts: localhost
   tasks:
     - include_tasks: tasks/apt.yml
