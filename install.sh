@@ -8,13 +8,13 @@ fi
 
 if [ $# -eq 0 ]; then
     echo "Error: No arguments provided"
-    echo "Please enter a tag either home or work"
+    echo "Please enter a tag. Either home or work"
     exit 1
 fi
 
 if [ "$1" != "home" ] && [ "$1" != "work" ]; then
     echo "Error: Invalid argument"
-    echo "Please enter a tag either home or work"
+    echo "Please enter a tag. Either home or work"
     exit 1
 fi
 
