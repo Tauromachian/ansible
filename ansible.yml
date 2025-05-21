@@ -13,3 +13,6 @@
     - include_tasks: tasks/nerd-font.yml
     - include_tasks: tasks/autocpu-freq.yml
     - include_tasks: tasks/nvm.yml
+
+  tags:
+    - home
