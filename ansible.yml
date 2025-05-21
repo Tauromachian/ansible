@@ -16,3 +16,19 @@
 
   tags:
     - home
+
+- name: Workstation Setup
+  hosts: localhost
+  tasks:
+    - include_tasks: tasks/apt.yml
+    - include_tasks: tasks/tmux.yml
+    - include_tasks: tasks/homebrew.yml
+    - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/alacritty.yml
+    - include_tasks: tasks/nvidia.yml
+    - include_tasks: tasks/nerd-font.yml
+    - include_tasks: tasks/autocpu-freq.yml
+    - include_tasks: tasks/nvm.yml
+
+  tags:
+    - work
