@@ -24,6 +24,7 @@
     - com.discordapp.Discord
     - com.brave.Browser
     - com.usebruno.Bruno
+    - org.mozilla.Thunderbird
   tags:
     - home
 
@@ -39,6 +40,7 @@
     - com.calibre_ebook.calibre
     - com.brave.Browser
     - com.usebruno.Bruno
+    - org.mozilla.Thunderbird
   tags:
     - work
 
