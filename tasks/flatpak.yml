@@ -23,6 +23,7 @@
     - com.brave.Browser
     - com.usebruno.Bruno
     - org.mozilla.Thunderbird
+    - it.mijorus.gearlever
 
 - name: Install Home Flatpak applications
   flatpak:
