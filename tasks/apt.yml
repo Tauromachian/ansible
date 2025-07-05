@@ -30,4 +30,5 @@
       - libxkbcommon-dev
       - python3
       - fzf
+      - zsh
     state: present
