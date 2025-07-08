@@ -31,4 +31,5 @@
       - python3
       - fzf
       - zsh
+      - lua5.4
     state: present
