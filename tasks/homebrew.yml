@@ -69,5 +69,6 @@
       - starship
       - ripgrep
       - yt-dlp
+      - lua
     state: present
 
