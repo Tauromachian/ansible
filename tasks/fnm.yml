@@ -1,0 +1,15 @@
+- name: Check if fnm is installed
+  ansible.builtin.stat:
+    path: "{{ lookup('env', 'HOME') }}/.local/share/fnm/fnm"
+  register: fnm_stat
+
+- name: Install fnm
+  ansible.builtin.shell: |
+    curl -fsSL https://fnm.vercel.app/install | /bin/bash -s
+  args:
+    executable: /bin/bash
+  when: not fnm_stat.stat.exists
+
+- name: Install node and set version
+  shell: >
+    /bin/bash -c "source {{ lookup('env', 'HOME') }}/.local/share/fnm/fnm && fnm install --lts"
