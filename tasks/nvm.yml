@@ -11,5 +11,5 @@
   when: not nvm_stat.stat.exists
 
 - name: Install node and set version
-  shell: >
+  ansible.builtin.shell: >
     /bin/bash -c "source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts"
