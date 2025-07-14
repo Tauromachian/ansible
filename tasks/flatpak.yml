@@ -5,6 +5,7 @@
     state: present
 
 - name: Add Flathub remote
+  become: true
   flatpak_remote:
     name: flathub
     state: present
