@@ -19,6 +19,7 @@
       - nala
       - samba
       - curl
+      - wget
       - neofetch
       - stow
       - cmake
