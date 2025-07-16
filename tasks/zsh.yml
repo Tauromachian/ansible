@@ -1,0 +1,21 @@
+- name: Check if ZSH is already installed
+  ansible.builtin.stat:
+    path: "/usr/bin/zsh"
+  register: zsh_stat
+
+
+- name: Install common packages
+  become: true
+  ansible.builtin.apt:
+    name:
+      - zsh
+    state: present
+  when: not zsh_stat.stat.exists
+
+- name: Change default shell for a user
+  become: yes
+  tasks:
+    - name: Set default shell for user jose to zsh
+      user:
+        name: jose
+        shell: /bin/zsh
