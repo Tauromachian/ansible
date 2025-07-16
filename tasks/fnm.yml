@@ -12,4 +12,4 @@
 
 - name: Install node and set version
   shell: >
-    /bin/bash -c "source {{ lookup('env', 'HOME') }}/.local/share/fnm/fnm && fnm install --lts"
+    /bin/bash -c "{{ lookup('env', 'HOME') }}/.local/share/fnm/fnm install --lts"
