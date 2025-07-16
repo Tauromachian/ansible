@@ -3,7 +3,7 @@
     path: "{{ lookup('env', 'HOME') }}/.dotfiles"
   register: folder_stat
 
-- name: Clone a git repository
+- name: Clone dotfiles repo
   ansible.builtin.git:
     repo: 'https://github.com/Tauromachian/dotfiles.git'
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
