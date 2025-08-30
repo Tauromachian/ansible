@@ -23,11 +23,11 @@
       mode: '0755'
     become: true
 
-  - name: Install Homebrew if not present
+  - name: Install Homebrew
     ansible.builtin.shell: |
       curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
 
-  - name: Update Homebrew after install
+  - name: Update Homebrew
     ansible.builtin.command: "/home/linuxbrew/.linuxbrew/bin/brew update"
 
   - name: Install Homebrew packages
