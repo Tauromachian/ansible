@@ -26,7 +26,6 @@
 - name: Install Homebrew if not present
   ansible.builtin.shell: |
     curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
-  become: false
   register: brew_install
   failed_when: brew_install.rc != 0
   when: not brew_stat.stat.exists
@@ -34,11 +33,9 @@
 - block:
   - name: Update Homebrew after install
     ansible.builtin.command: "/home/linuxbrew/.linuxbrew/bin/brew update"
-    become: false
     when: not brew_stat.stat.exists
 
   - name: Install Homebrew packages
-    become: false
     community.general.homebrew:
       name:
         - podman
