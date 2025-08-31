@@ -5,7 +5,6 @@
       - curl
       - git
       - tar
-    state: present
   become: true
 
 - name: Check if Homebrew is already installed
@@ -38,7 +37,6 @@
         - yt-dlp
         - lua
       update_homebrew: true
-      state: present
 
   when: not brew_stat.stat.exists
   environment:
