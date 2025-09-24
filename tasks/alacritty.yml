@@ -9,7 +9,7 @@
   register: cargo_exists
   ignore_errors: yes
 
-- name: Install rustup and Rust compiler
+- name: Install Rust compiler
   ansible.builtin.shell:
     cmd: curl https://sh.rustup.rs -sSf | sh -s -- -y
     creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/rustc"
