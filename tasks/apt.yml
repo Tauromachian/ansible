@@ -23,4 +23,8 @@
       - fzf
       - zsh
     update_cache: yes
+
+- name: Upgrade all packages
+  become: true
+  ansible.builtin.apt:
     upgrade: yes
