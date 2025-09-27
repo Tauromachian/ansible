@@ -1,13 +1,3 @@
-- name: Update apt cache
-  become: true
-  ansible.builtin.apt:
-    update_cache: yes
-
-- name: Upgrade all packages
-  become: true
-  ansible.builtin.apt:
-    upgrade: yes
-
 - name: Install common packages
   become: true
   ansible.builtin.apt:
@@ -32,4 +22,5 @@
       - python3
       - fzf
       - zsh
-    state: present
+    update_cache: yes
+    upgrade: yes
