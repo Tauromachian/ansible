@@ -9,9 +9,9 @@
   when: cargo_exists_stat is failed
 
 - name: Check if Alacritty is already compiled
-  ansible.builtin.stat:
-    path: "{{ lookup('env', 'HOME') }}/Documents/alacritty/target/release/alacritty"
+  shell: command -v alacritty
   register: alacritty_installed_stat
+  ignore_errors: yes
 
 - block:
   - name: Clone Alacritty
@@ -49,4 +49,4 @@
       cmd: "update-desktop-database"
 
   become: yes
-  when: not alacritty_installed_stat.stat.exists
+  when: alacritty_installed_stat is failed
