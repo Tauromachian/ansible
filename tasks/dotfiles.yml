@@ -16,6 +16,13 @@
     state: absent
   when: not folder_stat.stat.exists
 
+- name: Recursively change ownership of a directory
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    state: directory
+    recurse: yes
+    mode: '0755'
+
 - name: Run stow for dotfiles
   ansible.builtin.shell:
     cmd: ./install.sh
