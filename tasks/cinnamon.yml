@@ -1,0 +1,53 @@
+- name: Create temporary directory for applet downloads
+  ansible.builtin.tempfile:
+    state: directory
+  register: temp_dir
+
+- name: Download Cinnamon applets from spices
+  ansible.builtin.get_url:
+    url: "https://cinnamon-spices.linuxmint.com/files/applets/auto-dark-light@gihaume.zip"
+    dest: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
+    mode: '0644'
+
+- name: Install downloaded applets to user directory
+  ansible.builtin.unarchive:
+    src: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
+    dest: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/"
+    creates: "~/.local/share/cinnamon/applets/auto-dark-light@gihaume"
+
+- name: Ensure ~/.config/cinnamon/spices/auto-dark-light@gihaume exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.config/cinnamon/spices/auto-dark-light@gihaume"
+    state: directory
+    mode: '0766'
+
+- name: Read current enabled-applets
+  community.general.dconf:
+    key: /org/cinnamon/enabled-applets
+    state: read
+  register: applets_raw
+
+- name: Parse the raw gsettings output into a proper list
+  ansible.builtin.set_fact:
+    current_applets_list: >-
+      {{ applets_raw.value
+         | regex_replace("^@as ", "")
+         | regex_replace("'", '"')
+         | from_json
+         | default([])
+      }}
+      
+- name: Download settings
+  ansible.builtin.get_url:
+    url: "https://gist.githubusercontent.com/Tauromachian/8c40ee3dc28640d59023dccf179b02b5/raw/f266d2d68d9c72cca866e18eab73432cc439acc4/auto-dark-light@gihaume.json"
+    dest: "{{ lookup('env', 'HOME') }}/.config/cinnamon/spices/auto-dark-light@gihaume/auto-dark-light@gihaume.json"
+    mode: "0644"
+
+- name: Enable the Automatic dark/light themes applet (idempotent & safe)
+  community.general.dconf:
+    key: /org/cinnamon/enabled-applets
+    value: >-
+      {{ (current_applets_list + ['panel1:right:0:auto-dark-light@gihaume:18'])
+         | unique
+         | list }}
+    state: present

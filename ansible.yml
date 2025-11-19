@@ -13,6 +13,7 @@
     - include_tasks: tasks/nerd-font.yml
     - include_tasks: tasks/autocpu-freq.yml
     - include_tasks: tasks/fnm.yml
+    - include_tasks: tasks/cinnamon.yml
 
   tags:
     - home
@@ -30,6 +31,7 @@
     - include_tasks: tasks/nerd-font.yml
     - include_tasks: tasks/autocpu-freq.yml
     - include_tasks: tasks/fnm.yml
+    - include_tasks: tasks/cinnamon.yml
 
   tags:
     - work
