@@ -3,13 +3,13 @@
     state: directory
   register: temp_dir
 
-- name: Download Cinnamon applets from spices
+- name: Download Cinnamon applets from Spices
   ansible.builtin.get_url:
     url: "https://cinnamon-spices.linuxmint.com/files/applets/auto-dark-light@gihaume.zip"
     dest: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
     mode: '0644'
 
-- name: Install downloaded applets to user directory
+- name: Install downloaded applets to the user directory
   ansible.builtin.unarchive:
     src: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
     dest: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/"
