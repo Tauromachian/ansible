@@ -43,7 +43,7 @@
     dest: "{{ lookup('env', 'HOME') }}/.config/cinnamon/spices/auto-dark-light@gihaume/auto-dark-light@gihaume.json"
     mode: "0644"
 
-- name: Enable the Automatic dark/light themes applet (idempotent & safe)
+- name: Enable the Automatic dark/light themes applet
   community.general.dconf:
     key: /org/cinnamon/enabled-applets
     value: >-
