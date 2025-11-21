@@ -13,7 +13,7 @@
   ansible.builtin.unarchive:
     src: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
     dest: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/"
-    creates: "~/.local/share/cinnamon/applets/auto-dark-light@gihaume"
+    creates: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/auto-dark-light@gihaume"
 
 - name: Ensure ~/.config/cinnamon/spices/auto-dark-light@gihaume exists
   ansible.builtin.file:
