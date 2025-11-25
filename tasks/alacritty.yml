@@ -50,3 +50,5 @@
 
   become: yes
   when: alacritty_installed_stat is failed
+  environment:
+    PATH: "{{ lookup('env', 'HOME') }}/.cargo/bin:{{ ansible_env.PATH }}"
