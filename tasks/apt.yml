@@ -23,6 +23,11 @@
       - fzf
       - zsh
       - uidmap
+      - virt-manager
+      - qemu-kvm
+      - libvirt-daemon-system
+      - libvirt-clients
+      - bridge-utils
     update_cache: yes
 
 - name: Upgrade all packages
