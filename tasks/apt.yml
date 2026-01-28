@@ -22,11 +22,13 @@
       - fzf
       - zsh
       - uidmap
+      # Virtual machine libraries
       - virt-manager
       - qemu-kvm
       - libvirt-daemon-system
       - libvirt-clients
       - bridge-utils
+      # Japanese libraries
       - ibus
       - ibus-mozc
       - mozc-utils-gui
