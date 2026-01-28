@@ -27,6 +27,13 @@
       - libvirt-daemon-system
       - libvirt-clients
       - bridge-utils
+      - ibus
+      - ibus-mozc
+      - mozc-utils-gui
+      - fonts-noto-cjk
+      - fonts-ipafont
+      - fonts-vlgothic
+      - fonts-takao
     update_cache: yes
 
 - name: Upgrade all packages
