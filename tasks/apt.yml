@@ -29,11 +29,9 @@
       - libvirt-clients
       - bridge-utils
       # Japanese libraries
-      - ibus
-      - ibus-mozc
-      - mozc-utils-gui
-      - fonts-noto-cjk
-      - fonts-ipafont
+      - fonts-ipafonfcitx5 
+      - fcitx5-mozc 
+      - fcitx5-frontend-gtk3t
       - fonts-vlgothic
       - fonts-takao
     update_cache: yes
