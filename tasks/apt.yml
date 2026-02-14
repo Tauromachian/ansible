@@ -29,11 +29,9 @@
       - libvirt-clients
       - bridge-utils
       # Japanese libraries
-      - fonts-ipafonfcitx5 
+      - fonts-noto-cjk
       - fcitx5-mozc 
-      - fcitx5-frontend-gtk3t
-      - fonts-vlgothic
-      - fonts-takao
+      - fcitx5-frontend-gtk3
     update_cache: yes
 
 - name: Upgrade all packages
