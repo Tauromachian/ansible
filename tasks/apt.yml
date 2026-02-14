@@ -9,7 +9,7 @@
       - samba
       - curl
       - wget
-      - neofetch
+      - fastfetch
       - stow
       - cmake
       - g++
