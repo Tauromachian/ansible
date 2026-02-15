@@ -36,6 +36,7 @@
     - com.valvesoftware.Steam
     - org.telegram.desktop
     - com.discordapp.Discord
+    - com.usebottles.bottles
   tags:
     - home
 
