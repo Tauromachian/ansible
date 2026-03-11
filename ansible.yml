@@ -14,7 +14,6 @@
     - include_tasks: tasks/autocpu-freq.yml
     - include_tasks: tasks/fnm.yml
     - include_tasks: tasks/cinnamon.yml
-
   tags:
     - home
 
@@ -32,6 +31,17 @@
     - include_tasks: tasks/autocpu-freq.yml
     - include_tasks: tasks/fnm.yml
     - include_tasks: tasks/cinnamon.yml
-
   tags:
     - work
+
+- name: Work Setup
+  hosts: localhost
+  tasks:
+    - include_tasks: tasks/apt.yml
+    - include_tasks: tasks/tmux.yml
+    - include_tasks: tasks/homebrew.yml
+    - include_tasks: tasks/dotfiles.yml
+    - include_tasks: tasks/nerd-font.yml
+    - include_tasks: tasks/fnm.yml
+  tags:
+    - wsl
