@@ -41,7 +41,6 @@
     - include_tasks: tasks/tmux.yml
     - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/dotfiles.yml
-    - include_tasks: tasks/nerd-font.yml
     - include_tasks: tasks/fnm.yml
   tags:
     - wsl
