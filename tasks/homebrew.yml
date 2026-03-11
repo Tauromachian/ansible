@@ -37,6 +37,7 @@
         - yt-dlp
         - lua
         - fd
+        - fnm
       update_homebrew: true
 
   when: not brew_stat.stat.exists
