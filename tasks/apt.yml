@@ -1,3 +1,28 @@
+- name: Install common packages for WSL
+  become: true
+  ansible.builtin.apt:
+    name:
+      - tmux
+      - nala
+      - curl
+      - wget
+      - stow
+      - cmake
+      - g++
+      - pkg-config
+      - libfreetype6-dev
+      - libfontconfig1-dev
+      - libxcb-xfixes0-dev
+      - libxkbcommon-dev
+      - python3
+      - fzf
+      - zsh
+      - uidmap
+      - imagemagick
+    update_cache: yes
+  tags:
+    - wsl
+
 - name: Install common packages
   become: true
   ansible.builtin.apt:
@@ -34,6 +59,9 @@
       - fcitx5-mozc 
       - fcitx5-frontend-gtk3
     update_cache: yes
+  tags:
+    - home
+    - work
 
 - name: Upgrade all packages
   become: true
