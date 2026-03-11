@@ -1,43 +1,43 @@
 - name: Home Setup
   hosts: localhost
   tasks:
-    - include_tasks: tasks/apt.yml
-    - include_tasks: tasks/tmux.yml
-    - include_tasks: tasks/gaming.yml
-    - include_tasks: tasks/flatpak.yml
-    - include_tasks: tasks/homebrew.yml
-    # - include_tasks: tasks/podman.yml
-    - include_tasks: tasks/dotfiles.yml
-    - include_tasks: tasks/alacritty.yml
-    - include_tasks: tasks/nvidia.yml
-    - include_tasks: tasks/nerd-font.yml
-    - include_tasks: tasks/autocpu-freq.yml
-    - include_tasks: tasks/cinnamon.yml
+    - import_tasks: tasks/apt.yml
+    - import_tasks: tasks/tmux.yml
+    - import_tasks: tasks/gaming.yml
+    - import_tasks: tasks/flatpak.yml
+    - import_tasks: tasks/homebrew.yml
+    # - import_tasks: tasks/podman.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/nvidia.yml
+    - import_tasks: tasks/nerd-font.yml
+    - import_tasks: tasks/autocpu-freq.yml
+    - import_tasks: tasks/cinnamon.yml
   tags:
     - home
 
 - name: Work Setup
   hosts: localhost
   tasks:
-    - include_tasks: tasks/apt.yml
-    - include_tasks: tasks/tmux.yml
-    - include_tasks: tasks/flatpak.yml
-    - include_tasks: tasks/homebrew.yml
-    - include_tasks: tasks/dotfiles.yml
-    - include_tasks: tasks/alacritty.yml
-    - include_tasks: tasks/nvidia.yml
-    - include_tasks: tasks/nerd-font.yml
-    - include_tasks: tasks/autocpu-freq.yml
-    - include_tasks: tasks/cinnamon.yml
+    - import_tasks: tasks/apt.yml
+    - import_tasks: tasks/tmux.yml
+    - import_tasks: tasks/flatpak.yml
+    - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/nvidia.yml
+    - import_tasks: tasks/nerd-font.yml
+    - import_tasks: tasks/autocpu-freq.yml
+    - import_tasks: tasks/cinnamon.yml
   tags:
     - work
 
 - name: Work Setup
   hosts: localhost
   tasks:
-    - include_tasks: tasks/apt.yml
-    - include_tasks: tasks/tmux.yml
-    - include_tasks: tasks/homebrew.yml
-    - include_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/apt.yml
+    - import_tasks: tasks/tmux.yml
+    - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/dotfiles.yml
   tags:
     - wsl
