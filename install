@@ -12,7 +12,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-if [ "$1" != "home" ] && [ "$1" != "work" ]; then
+if [ "$1" != "home" ] && [ "$1" != "work" ] && [ "$1" != "wsl" ]; then
     echo "Error: Invalid argument"
     echo "Please enter a tag. Either home or work"
     exit 1
