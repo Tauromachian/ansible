@@ -20,8 +20,7 @@
       - uidmap
       - imagemagick
     update_cache: yes
-  tags:
-    - wsl
+  tags: wsl
 
 - name: Install common packages
   become: true
@@ -59,9 +58,7 @@
       - fcitx5-mozc 
       - fcitx5-frontend-gtk3
     update_cache: yes
-  tags:
-    - home
-    - work
+  tags: [ home, work ]
 
 - name: Upgrade all packages
   become: true
