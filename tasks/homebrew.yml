@@ -38,6 +38,7 @@
         - lua
         - fd
         - fnm
+        - pnpm
       update_homebrew: true
 
   when: not brew_stat.stat.exists
