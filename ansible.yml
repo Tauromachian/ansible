@@ -8,7 +8,7 @@
     - import_tasks: tasks/homebrew.yml
     # - import_tasks: tasks/podman.yml
     - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/ghostty.yml
     - import_tasks: tasks/nvidia.yml
     - import_tasks: tasks/nerd-font.yml
     - import_tasks: tasks/autocpu-freq.yml
@@ -24,7 +24,7 @@
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/alacritty.yml
+    - import_tasks: tasks/ghostty.yml
     - import_tasks: tasks/nvidia.yml
     - import_tasks: tasks/nerd-font.yml
     - import_tasks: tasks/autocpu-freq.yml
