@@ -19,6 +19,7 @@
       - zsh
       - uidmap
       - imagemagick
+      - ffmpeg
     update_cache: yes
   tags: wsl
 
@@ -57,6 +58,7 @@
       - fonts-noto-cjk
       - fcitx5-mozc 
       - fcitx5-frontend-gtk3
+      - ffmpeg
     update_cache: yes
   tags: [ home, work ]
 
