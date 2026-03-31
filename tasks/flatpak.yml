@@ -26,6 +26,7 @@
     - com.usebruno.Bruno
     - org.mozilla.Thunderbird
     - it.mijorus.gearlever
+    - flatpak install flathub org.gimp.GIMP
 
 - name: Install Home Flatpak applications
   flatpak:
