@@ -8,7 +8,6 @@
     repo: 'https://github.com/Tauromachian/dotfiles.git'
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     version: main
-    recursive: true
   when: not folder_stat.stat.exists
 
 - name: Remove default .bashrc
