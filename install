@@ -14,7 +14,7 @@ fi
 
 if [ "$1" != "home" ] && [ "$1" != "work" ] && [ "$1" != "wsl" ]; then
     echo "Error: Invalid argument"
-    echo "Please enter a tag. Either home or work"
+    echo "Please enter a tag. Either home, work or wsl"
     exit 1
 fi
 
