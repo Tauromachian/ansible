@@ -1,3 +1,10 @@
+- name: Ensure keyrings directory exists
+  become: true
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
 - name: Download Ghostty key
   become: true
   get_url:
@@ -13,9 +20,10 @@
       - --dearmor
       - --yes
       - -o
-      - /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
+      - /etc/apt/keyrings/ghostty.gpg
       - /tmp/ghostty.asc
-    creates: /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
+  args:
+    creates: /etc/apt/keyrings/ghostty.gpg
 
 - name: Add Ghostty repository
   become: true
