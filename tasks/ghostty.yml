@@ -1,7 +1,7 @@
 - name: Download and install Ghostty GPG key (dearmored)
   become: true
   shell: |
-    curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
+    curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg -
   args:
     creates: /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
   register: gpg_key_result
