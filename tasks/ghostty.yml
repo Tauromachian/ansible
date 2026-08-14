@@ -28,7 +28,7 @@
 - name: Add Ghostty repository
   become: true
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/deb.griffo.io.gpg] https://deb.griffo.io/apt {{ ansible_lsb.codename }} main"
+    repo: "deb [signed-by=/etc/apt/keyrings/deb.griffo.io.gpg] https://deb.griffo.io/apt trixie main"
     filename: deb.griffo.io
     state: present
 
