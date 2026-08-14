@@ -1,0 +1,18 @@
+- name: Get fish shell path
+  command: which fish
+  register: fish_path
+  changed_when: false
+
+- name: Write fish path to allowed shells file
+  become: true
+  lineinfile:
+    path: /etc/shells
+    line: "{{ fish_path.stdout }}"
+    insertafter: EOF
+    state: present
+
+- name: Set fish as default shell
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ fish_path.stdout }}"

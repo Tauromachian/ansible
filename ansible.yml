@@ -6,7 +6,7 @@
     - import_tasks: tasks/gaming.yml
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
-    # - import_tasks: tasks/podman.yml
+    - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/ghostty.yml
     - import_tasks: tasks/nvidia.yml
@@ -23,6 +23,7 @@
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/ghostty.yml
     - import_tasks: tasks/nvidia.yml
@@ -38,6 +39,7 @@
     - import_tasks: tasks/apt.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
   tags:
     - wsl
