@@ -5,11 +5,12 @@
   register: gpg_key_result
   changed_when: gpg_key_result.rc == 0
 
-- name: Add repository
+- name: Add Ghostty repository
   become: true
-  shell: |
-    echo "deb https://debian.griffo.io/apt trixie main" | tee /etc/apt/sources.list.d/debian.griffo.io.list
-
+  apt_repository:
+    repo: "deb https://debian.griffo.io/apt trixie main"
+    filename: debian.griffo.io
+    state: present
 
 - name: Update cache
   become: true
