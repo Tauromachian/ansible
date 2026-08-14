@@ -39,6 +39,7 @@
         - fd
         - fnm
         - fish
+        - opencode
       update_homebrew: true
 
   when: not brew_stat.stat.exists
