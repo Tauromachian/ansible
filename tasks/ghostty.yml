@@ -5,14 +5,14 @@
     state: directory
     mode: "0755"
 
-- name: Download Ghostty key
+- name: Download Ghostty signing key
   become: true
   get_url:
-    url: https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc
-    dest: /tmp/ghostty.asc
+    url: https://deb.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc
+    dest: /tmp/deb.griffo.io.asc
     mode: "0644"
 
-- name: Dearmor Ghostty key
+- name: Install Ghostty keyring
   become: true
   command:
     argv:
@@ -20,16 +20,16 @@
       - --dearmor
       - --yes
       - -o
-      - /etc/apt/keyrings/ghostty.gpg
-      - /tmp/ghostty.asc
+      - /etc/apt/keyrings/deb.griffo.io.gpg
+      - /tmp/deb.griffo.io.asc
   args:
-    creates: /etc/apt/keyrings/ghostty.gpg
+    creates: /etc/apt/keyrings/deb.griffo.io.gpg
 
 - name: Add Ghostty repository
   become: true
   apt_repository:
-    repo: "deb https://debian.griffo.io/apt trixie main"
-    filename: debian.griffo.io
+    repo: "deb [signed-by=/etc/apt/keyrings/deb.griffo.io.gpg] https://deb.griffo.io/apt {{ ansible_lsb.codename }} main"
+    filename: deb.griffo.io
     state: present
 
 - name: Update cache
