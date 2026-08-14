@@ -38,6 +38,7 @@
         - lua
         - fd
         - fnm
+        - fish
       update_homebrew: true
 
   when: not brew_stat.stat.exists
