@@ -2,6 +2,8 @@
   command: which fish
   register: fish_path
   changed_when: false
+  environment:
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
 
 - name: Write fish path to allowed shells file
   become: true
