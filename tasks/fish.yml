@@ -1,15 +1,18 @@
-- name: Get fish shell path
-  command: which fish
-  register: fish_path
+- name: Get Homebrew prefix
+  become: false
+  command: /home/linuxbrew/.linuxbrew/bin/brew --prefix
+  register: brew_prefix
   changed_when: false
-  environment:
-    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+
+- name: Set fish path
+  ansible.builtin.set_fact:
+    fish_path: "{{ brew_prefix.stdout }}/bin/fish"
 
 - name: Write fish path to allowed shells file
   become: true
   lineinfile:
     path: /etc/shells
-    line: "{{ fish_path.stdout }}"
+    line: "{{ fish_path }}"
     insertafter: EOF
     state: present
 
@@ -17,4 +20,4 @@
   become: true
   user:
     name: "{{ ansible_user_id }}"
-    shell: "{{ fish_path.stdout }}"
+    shell: "{{ fish_path }}"
