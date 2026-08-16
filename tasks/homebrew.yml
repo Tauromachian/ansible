@@ -29,6 +29,11 @@
   - name: Install Homebrew packages
     community.general.homebrew:
       name:
+        - workmux
+
+  - name: Install Homebrew packages
+    community.general.homebrew:
+      name:
         - podman
         - podman-compose
         - neovim
@@ -40,7 +45,6 @@
         - fnm
         - fish
         - opencode
-        - raine/workmux
       update_homebrew: true
 
   when: not brew_stat.stat.exists
