@@ -26,6 +26,12 @@
     ansible.builtin.shell: |
       curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
 
+  - name: Trust workmux Homebrew formula
+    ansible.builtin.command:
+      cmd: brew trust --formula raine/workmux/workmux
+    environment:
+      PATH: /home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}
+
   - name: Add workmux Homebrew tap
     community.general.homebrew_tap:
       name: raine/workmux
