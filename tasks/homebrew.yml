@@ -26,6 +26,11 @@
     ansible.builtin.shell: |
       curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /home/linuxbrew/.linuxbrew
 
+  - name: Add workmux Homebrew tap
+    community.general.homebrew_tap:
+      name: raine/workmux
+      state: present
+
   - name: Install Homebrew packages
     community.general.homebrew:
       name:
