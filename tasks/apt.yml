@@ -61,8 +61,3 @@
       - ffmpeg
     update_cache: yes
   tags: [ home, work ]
-
-- name: Upgrade all packages
-  become: true
-  ansible.builtin.apt:
-    upgrade: yes
