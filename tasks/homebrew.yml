@@ -51,9 +51,8 @@
         - starship
         - ripgrep
         - yt-dlp
-        - lua
         - fd
-        - fnm
+        - asdf
         - fish
         - opencode
       update_homebrew: true
