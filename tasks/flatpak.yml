@@ -18,7 +18,7 @@
     state: present
     remote: flathub
   loop: "{{ flatpak_apps }}"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 - name: Install Home Flatpak applications (Debian)
   flatpak:
@@ -26,7 +26,7 @@
     state: present
     remote: flathub
   loop: "{{ flatpak_home_apps }}"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   tags:
     - home
 
@@ -36,7 +36,7 @@
   community.general.pacman:
     name: "{{ native_desktop_apps }}"
     state: present
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
   tags: [home, work]
 
 - name: Install native home applications (Arch)
@@ -44,7 +44,7 @@
   community.general.pacman:
     name: "{{ native_home_apps }}"
     state: present
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
   tags:
     - home
 
@@ -54,7 +54,7 @@
     state: present
     remote: flathub
   loop: "{{ flatpak_apps }}"
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
 
 - name: Give Brave access to home
   shell: |
@@ -63,13 +63,13 @@
 - name: Give Telegram access to home
   shell: |
     flatpak override --user org.telegram.desktop --filesystem=home
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   tags:
     - home
 
 - name: Give Discord access to home
   shell: |
     flatpak override --user com.discordapp.Discord --filesystem=home
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   tags:
     - home

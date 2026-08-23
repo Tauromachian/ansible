@@ -1,5 +1,5 @@
 - name: Install Ghostty (Debian)
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   block:
     - name: Ensure keyrings directory exists
       become: true
@@ -51,4 +51,4 @@
   community.general.pacman:
     name: ghostty
     state: present
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'

@@ -8,7 +8,7 @@
   community.general.pacman:
     name: "{{ native_brew_alternatives }}"
     state: present
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
 
 - name: Check if Homebrew is already installed
   ansible.builtin.stat:
@@ -20,8 +20,8 @@
     ansible.builtin.file:
       path: "/home/linuxbrew/.linuxbrew"
       state: directory
-      owner: "{{ ansible_env.USER }}"
-      group: "{{ ansible_env.USER }}"
+      owner: "{{ ansible_facts.env.USER }}"
+      group: "{{ ansible_facts.env.USER }}"
       mode: '0755'
     become: true
 
@@ -33,7 +33,7 @@
     ansible.builtin.command:
       cmd: brew trust --formula raine/workmux/workmux
     environment:
-      PATH: /home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}
+      PATH: /home/linuxbrew/.linuxbrew/bin:{{ ansible_facts.env.PATH }}
 
   - name: Add workmux Homebrew tap
     community.general.homebrew_tap:
@@ -47,4 +47,4 @@
 
   when: not brew_stat.stat.exists
   environment:
-    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_env.PATH }}"
+    PATH: "/home/linuxbrew/.linuxbrew/bin:{{ ansible_facts.env.PATH }}"

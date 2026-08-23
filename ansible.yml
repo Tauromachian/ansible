@@ -3,7 +3,7 @@
   tasks:
     - name: Load distribution variables
       ansible.builtin.include_vars:
-        file: "{{ ansible_os_family | lower }}.yml"
+        file: "{{ ansible_facts['os_family'] | lower }}.yml"
       tags: always
 
     - import_tasks: tasks/packages.yml
@@ -26,7 +26,7 @@
   tasks:
     - name: Load distribution variables
       ansible.builtin.include_vars:
-        file: "{{ ansible_os_family | lower }}.yml"
+        file: "{{ ansible_facts['os_family'] | lower }}.yml"
       tags: always
 
     - import_tasks: tasks/packages.yml
@@ -48,7 +48,7 @@
   tasks:
     - name: Load distribution variables
       ansible.builtin.include_vars:
-        file: "{{ ansible_os_family | lower }}.yml"
+        file: "{{ ansible_facts['os_family'] | lower }}.yml"
       tags: always
 
     - import_tasks: tasks/packages.yml

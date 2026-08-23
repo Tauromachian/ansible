@@ -71,6 +71,6 @@ On Arch, everything available in the official repositories is installed natively
 ```
 install        # Bootstrap script: detects the distro, validates the tag, installs Ansible, runs the playbook
 ansible.yml    # Three plays, tagged home / work / wsl
-tasks/*.yml    # One file per concern; distro-specific ones branch on ansible_os_family
+tasks/*.yml    # One file per concern; distro-specific ones branch on ansible_facts['os_family']
 vars/*.yml     # Per-family native package name mappings (debian.yml, archlinux.yml)
 ```

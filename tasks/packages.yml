@@ -1,9 +1,9 @@
 - name: Verify WSL profile requirements
   ansible.builtin.assert:
-    that: ansible_os_family == 'Debian'
+    that: ansible_facts['os_family'] == 'Debian'
     fail_msg: >-
       The 'wsl' profile is only supported on Debian-based distributions
-      (detected: {{ ansible_os_family }}).
+      (detected: {{ ansible_facts['os_family'] }}).
   tags: wsl
 
 - name: Install WSL packages
@@ -12,7 +12,7 @@
     name: "{{ wsl_packages }}"
     state: present
     update_cache: true
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   tags: wsl
 
 - name: Install desktop packages (Debian)
@@ -21,7 +21,7 @@
     name: "{{ desktop_packages }}"
     state: present
     update_cache: true
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   tags: [home, work]
 
 - name: Install desktop packages (Arch)
@@ -30,5 +30,5 @@
     name: "{{ desktop_packages }}"
     state: present
     update_cache: true
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
   tags: [home, work]

@@ -1,5 +1,5 @@
 - name: Install wine (Debian)
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
   block:
     - name: Add i386 architecture
       become: true
@@ -47,7 +47,7 @@
   register: multilib_check
   changed_when: false
   failed_when: false
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
 
 - name: Enable multilib repository (Arch)
   become: true
@@ -58,7 +58,7 @@
         printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf
     fi
   when:
-    - ansible_os_family == 'Archlinux'
+    - ansible_facts['os_family'] == 'Archlinux'
     - multilib_check.rc != 0
 
 - name: Install wine (Arch)
@@ -70,4 +70,4 @@
       - wine-gecko
     state: present
     update_cache: true
-  when: ansible_os_family == 'Archlinux'
+  when: ansible_facts['os_family'] == 'Archlinux'
