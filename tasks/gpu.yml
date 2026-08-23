@@ -34,8 +34,9 @@
   community.general.pacman:
     name:
       - linux-headers
-      - nvidia-dkms
+      - nvidia-open-dkms
       - nvidia-utils
+      - lib32-nvidia-utils
     state: present
   when:
     - ansible_os_family == 'Archlinux'

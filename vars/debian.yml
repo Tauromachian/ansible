@@ -53,6 +53,39 @@ desktop_packages:
   - fcitx5-frontend-gtk3
   - ffmpeg
 
+# Flatpak applications (all profiles)
+flatpak_apps:
+  - org.videolan.VLC
+  - com.obsproject.Studio
+  - org.shotcut.Shotcut
+  - com.calibre_ebook.calibre
+  - com.brave.Browser
+  - com.usebruno.Bruno
+  - org.mozilla.Thunderbird
+  - it.mijorus.gearlever
+  - org.gimp.GIMP
+
+# Flatpak applications (home profile only)
+flatpak_home_apps:
+  - com.valvesoftware.Steam
+  - org.telegram.desktop
+  - com.discordapp.Discord
+  - com.usebottles.bottles
+
+# Homebrew packages (Debian has no native equivalents for these)
+brew_packages:
+  - workmux
+  - podman
+  - podman-compose
+  - neovim
+  - starship
+  - ripgrep
+  - yt-dlp
+  - fd
+  - asdf
+  - fish
+  - opencode
+
 homebrew_dependencies:
   - build-essential
   - curl

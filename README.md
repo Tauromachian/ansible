@@ -28,6 +28,8 @@ The script must be run as a regular user (it will refuse to run as root or with 
 
 Anything else fails fast with a clear error before installing Ansible.
 
+On Arch, everything available in the official repositories is installed natively with pacman — Homebrew and Flatpak are only used for software that doesn't exist there (`workmux`, `asdf`, Brave, Bruno, Gearlever and Bottles).
+
 ## Profiles
 
 | Tag    | Purpose                                                                    |
@@ -42,7 +44,8 @@ Anything else fails fast with a clear error before installing Ansible.
 
 - Native packages (APT or pacman): tmux, curl, wget, stow, cmake, gcc, fzf, zsh, imagemagick, ffmpeg, etc.
 - Homebrew: podman, podman-compose, neovim, starship, ripgrep, yt-dlp, fd, asdf, fish, opencode, workmux
-- [fish](https://fishshell.com/) from Homebrew set as default login shell
+  - On Arch these come from pacman instead, except `workmux` and `asdf` which have no native package and stay on Homebrew
+- [fish](https://fishshell.com/) set as default login shell (from Homebrew on Debian-based systems; pacman's `/usr/bin/fish` on Arch)
 - [TPM](https://github.com/tmux-plugins/tpm) (tmux plugin manager)
 - CascadiaMono Nerd Font into `~/.fonts`
 - Dotfiles cloned from [Tauromachian/dotfiles](https://github.com/Tauromachian/dotfiles) and applied with GNU Stow
@@ -51,15 +54,16 @@ Anything else fails fast with a clear error before installing Ansible.
 
 - Native extras: gpick, gparted, samba, fastfetch, virt-manager/QEMU virtualization stack, Japanese input (fcitx5-mozc + Noto CJK fonts)
 - Flatpak: VLC, OBS Studio, Shotcut, Calibre, Brave, Bruno, Thunderbird, Gearlever, GIMP
+  - On Arch, VLC, OBS Studio, Shotcut, Calibre, Thunderbird and GIMP are installed natively via pacman instead
 - [Ghostty](https://ghostty.org/) terminal (deb repository on Debian-based systems; official `extra` package on Arch)
-- NVIDIA drivers auto-installed if the hardware is detected (`ubuntu-drivers` on Ubuntu; `nvidia-dkms` on Arch)
+- NVIDIA drivers auto-installed if the hardware is detected (`ubuntu-drivers` on Ubuntu; `nvidia-open-dkms` on Arch)
 - [auto-cpufreq](https://github.com/AdnanHodzic/auto-cpufreq) cloned (installer step currently disabled)
 - Cinnamon desktop: keybindings loaded via dconf plus the auto-dark-light applet installed and enabled
 
 ### Home only
 
 - Wine (WineHQ stable with i386 enabled on Debian-based systems; multilib `wine`/`wine-mono`/`wine-gecko` on Arch)
-- Flatpak: Steam, Telegram, Discord, Bottles
+- Steam, Telegram, Discord and Bottles (Flatpak on Debian-based systems; Telegram, Discord and Steam natively via pacman on Arch, Bottles stays Flatpak)
 - Flatpak overrides giving Brave, Telegram and Discord access to `$HOME`
 
 ## Project layout

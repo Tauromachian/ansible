@@ -3,10 +3,17 @@
   command: /home/linuxbrew/.linuxbrew/bin/brew --prefix
   register: brew_prefix
   changed_when: false
+  when: ansible_os_family == 'Debian'
 
-- name: Set fish path
+- name: Set fish path (Debian)
   ansible.builtin.set_fact:
     fish_path: "{{ brew_prefix.stdout }}/bin/fish"
+  when: ansible_os_family == 'Debian'
+
+- name: Set fish path (Arch)
+  ansible.builtin.set_fact:
+    fish_path: /usr/bin/fish
+  when: ansible_os_family == 'Archlinux'
 
 - name: Write fish path to allowed shells file
   become: true

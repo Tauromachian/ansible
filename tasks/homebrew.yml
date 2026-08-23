@@ -3,6 +3,13 @@
     name: "{{ homebrew_dependencies }}"
   become: true
 
+- name: Install packages available in official repositories (Arch)
+  become: true
+  community.general.pacman:
+    name: "{{ native_brew_alternatives }}"
+    state: present
+  when: ansible_os_family == 'Archlinux'
+
 - name: Check if Homebrew is already installed
   ansible.builtin.stat:
     path: "/home/linuxbrew/.linuxbrew/bin/brew"
@@ -35,22 +42,7 @@
 
   - name: Install Homebrew packages
     community.general.homebrew:
-      name:
-        - workmux
-
-  - name: Install Homebrew packages
-    community.general.homebrew:
-      name:
-        - podman
-        - podman-compose
-        - neovim
-        - starship
-        - ripgrep
-        - yt-dlp
-        - fd
-        - asdf
-        - fish
-        - opencode
+      name: "{{ brew_packages }}"
       update_homebrew: true
 
   when: not brew_stat.stat.exists

@@ -11,35 +11,50 @@
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
-
-- name: Install Work Flatpak applications
+# Debian-based systems install everything through Flatpak
+- name: Install Flatpak applications (Debian)
   flatpak:
     name: "{{ item }}"
     state: present
     remote: flathub
-  loop:
-    - org.videolan.VLC
-    - com.obsproject.Studio
-    - org.shotcut.Shotcut
-    - com.calibre_ebook.calibre
-    - com.brave.Browser
-    - com.usebruno.Bruno
-    - org.mozilla.Thunderbird
-    - it.mijorus.gearlever
-    - org.gimp.GIMP
+  loop: "{{ flatpak_apps }}"
+  when: ansible_os_family == 'Debian'
 
-- name: Install Home Flatpak applications
+- name: Install Home Flatpak applications (Debian)
   flatpak:
     name: "{{ item }}"
     state: present
     remote: flathub
-  loop:
-    - com.valvesoftware.Steam
-    - org.telegram.desktop
-    - com.discordapp.Discord
-    - com.usebottles.bottles
+  loop: "{{ flatpak_home_apps }}"
+  when: ansible_os_family == 'Debian'
   tags:
     - home
+
+# Arch-based systems install what exists natively and keep the rest on Flatpak
+- name: Install native desktop applications (Arch)
+  become: true
+  community.general.pacman:
+    name: "{{ native_desktop_apps }}"
+    state: present
+  when: ansible_os_family == 'Archlinux'
+  tags: [home, work]
+
+- name: Install native home applications (Arch)
+  become: true
+  community.general.pacman:
+    name: "{{ native_home_apps }}"
+    state: present
+  when: ansible_os_family == 'Archlinux'
+  tags:
+    - home
+
+- name: Install Flatpak-only applications (Arch)
+  flatpak:
+    name: "{{ item }}"
+    state: present
+    remote: flathub
+  loop: "{{ flatpak_apps }}"
+  when: ansible_os_family == 'Archlinux'
 
 - name: Give Brave access to home
   shell: |
@@ -48,12 +63,13 @@
 - name: Give Telegram access to home
   shell: |
     flatpak override --user org.telegram.desktop --filesystem=home
+  when: ansible_os_family == 'Debian'
   tags:
     - home
 
 - name: Give Discord access to home
   shell: |
     flatpak override --user com.discordapp.Discord --filesystem=home
+  when: ansible_os_family == 'Debian'
   tags:
     - home
-

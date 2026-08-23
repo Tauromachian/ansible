@@ -5,13 +5,12 @@ desktop_packages:
   - gpick
   - gparted
   - tmux
-  - nala
   - samba
   - curl
   - wget
   - fastfetch
   - pciutils
-  - gnu-stow
+  - stow
   - cmake
   - gcc
   - pkgconf
@@ -22,18 +21,55 @@ desktop_packages:
   - python
   - fzf
   - zsh
-  - uidmap
   - imagemagick
   # Virtual machine libraries
   - virt-manager
   - qemu-desktop
   - libvirt
-  - bridge-utils
   # Japanese libraries
   - noto-fonts-cjk
   - fcitx5-mozc
   - fcitx5-gtk
   - ffmpeg
+
+# Flatpak applications that exist natively, installed with pacman instead
+native_desktop_apps:
+  - vlc
+  - obs-studio
+  - shotcut
+  - calibre
+  - thunderbird
+  - gimp
+
+native_home_apps:
+  - telegram-desktop
+  - discord
+  - steam
+
+# Flatpak applications without a native package (stay on Flatpak)
+flatpak_apps:
+  - com.brave.Browser
+  - com.usebruno.Bruno
+  - it.mijorus.gearlever
+  - com.usebottles.bottles
+
+# Homebrew packages that exist natively, installed with pacman instead
+native_brew_alternatives:
+  - podman
+  - podman-compose
+  - neovim
+  - starship
+  - ripgrep
+  - yt-dlp
+  - fd
+  - fish
+  - opencode
+
+# Homebrew packages with no native equivalent (asdf exists in AUR only,
+# workmux only ships through its Homebrew tap)
+brew_packages:
+  - workmux
+  - asdf
 
 homebrew_dependencies:
   - base-devel
