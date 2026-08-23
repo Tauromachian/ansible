@@ -1,0 +1,60 @@
+# Native APT package names for Debian-based distributions
+wsl_packages:
+  - tmux
+  - nala
+  - curl
+  - wget
+  - stow
+  - cmake
+  - g++
+  - pkg-config
+  - libfreetype6-dev
+  - libfontconfig1-dev
+  - libxcb-xfixes0-dev
+  - libxkbcommon-dev
+  - python3
+  - fzf
+  - zsh
+  - uidmap
+  - imagemagick
+  - ffmpeg
+
+desktop_packages:
+  - gpick
+  - gparted
+  - tmux
+  - nala
+  - samba
+  - curl
+  - wget
+  - fastfetch
+  - stow
+  - cmake
+  - g++
+  - pkg-config
+  - libfreetype6-dev
+  - libfontconfig1-dev
+  - libxcb-xfixes0-dev
+  - libxkbcommon-dev
+  - python3
+  - fzf
+  - zsh
+  - uidmap
+  - imagemagick
+  # Virtual machine libraries
+  - virt-manager
+  - qemu-kvm
+  - libvirt-daemon-system
+  - libvirt-clients
+  - bridge-utils
+  # Japanese libraries
+  - fonts-noto-cjk
+  - fcitx5-mozc
+  - fcitx5-frontend-gtk3
+  - ffmpeg
+
+homebrew_dependencies:
+  - build-essential
+  - curl
+  - git
+  - tar

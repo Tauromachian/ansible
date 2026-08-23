@@ -1,0 +1,43 @@
+- name: Check for NVIDIA hardware
+  ansible.builtin.shell: lspci | grep -i nvidia
+  register: nvidia_check
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+
+- name: Check if NVIDIA drivers are installed
+  ansible.builtin.shell: command -v nvidia-smi
+  register: nvidia_driver_check
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+  when: nvidia_check.rc == 0
+
+- name: Install NVIDIA drivers (Ubuntu)
+  when:
+    - ansible_os_family == 'Debian'
+    - nvidia_check.rc == 0
+    - nvidia_driver_check.rc != 0
+  block:
+    - name: Add graphics drivers PPA
+      become: true
+      ansible.builtin.apt_repository:
+        repo: ppa:graphics-drivers/ppa
+        state: present
+
+    - name: Autoinstall NVIDIA drivers
+      become: true
+      ansible.builtin.command: ubuntu-drivers autoinstall
+
+- name: Install NVIDIA drivers (Arch)
+  become: true
+  community.general.pacman:
+    name:
+      - linux-headers
+      - nvidia-dkms
+      - nvidia-utils
+    state: present
+  when:
+    - ansible_os_family == 'Archlinux'
+    - nvidia_check.rc == 0
+    - nvidia_driver_check.rc != 0

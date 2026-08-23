@@ -1,0 +1,73 @@
+- name: Install wine (Debian)
+  when: ansible_os_family == 'Debian'
+  block:
+    - name: Add i386 architecture
+      become: true
+      ansible.builtin.command: dpkg --add-architecture i386
+
+    - name: Create directory for keyrings
+      become: true
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download and Install WineHQ GPG key
+      become: true
+      shell: |
+        wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key -
+      args:
+        creates: /etc/apt/keyrings/winehq-archive.key
+      register: gpg_key_result
+      changed_when: gpg_key_result.rc == 0
+
+    - name: Add repository
+      become: true
+      shell: |
+        wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+      args:
+        creates: /etc/apt/sources.list.d/winehq-jammy.sources
+      register: download_result
+      changed_when: download_result.rc == 0
+
+    - name: Update cache
+      become: true
+      apt:
+        update_cache: yes
+
+    - name: Install wine
+      become: true
+      apt:
+        name: winehq-stable
+        state: present
+        install_recommends: yes
+
+- name: Check multilib repository status (Arch)
+  ansible.builtin.command: grep -q '^\[multilib\]' /etc/pacman.conf
+  register: multilib_check
+  changed_when: false
+  failed_when: false
+  when: ansible_os_family == 'Archlinux'
+
+- name: Enable multilib repository (Arch)
+  become: true
+  ansible.builtin.shell: |
+    if ! grep -q '^\[multilib\]' /etc/pacman.conf; then
+      sed -i '/^#\?\[multilib\]/,+1s/^#\s*//' /etc/pacman.conf
+      grep -q '^\[multilib\]' /etc/pacman.conf || \
+        printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf
+    fi
+  when:
+    - ansible_os_family == 'Archlinux'
+    - multilib_check.rc != 0
+
+- name: Install wine (Arch)
+  become: true
+  community.general.pacman:
+    name:
+      - wine
+      - wine-mono
+      - wine-gecko
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'Archlinux'

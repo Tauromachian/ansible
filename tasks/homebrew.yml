@@ -1,10 +1,6 @@
 - name: Ensure Homebrew dependencies are installed
-  ansible.builtin.apt:
-    name:
-      - build-essential
-      - curl
-      - git
-      - tar
+  ansible.builtin.package:
+    name: "{{ homebrew_dependencies }}"
   become: true
 
 - name: Check if Homebrew is already installed

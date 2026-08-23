@@ -1,6 +1,6 @@
 - name: Install Flatpak
   become: true
-  apt:
+  ansible.builtin.package:
     name: flatpak
     state: present
 
@@ -44,19 +44,16 @@
 - name: Give Brave access to home
   shell: |
     flatpak override --user com.brave.Browser --filesystem=home
-  when: ansible_distribution == 'Ubuntu'
 
 - name: Give Telegram access to home
   shell: |
     flatpak override --user org.telegram.desktop --filesystem=home
-  when: ansible_distribution == 'Ubuntu'
   tags:
     - home
 
 - name: Give Discord access to home
   shell: |
     flatpak override --user com.discordapp.Discord --filesystem=home
-  when: ansible_distribution == 'Ubuntu'
   tags:
     - home
 

@@ -18,11 +18,32 @@ if [ "$1" != "home" ] && [ "$1" != "work" ] && [ "$1" != "wsl" ]; then
     exit 1
 fi
 
-if ! command -v ansible > /dev/null 2>&1; then
-    sudo apt install -y software-properties-common
-    sudo apt-add-repository -y ppa:ansible/ansible
-    sudo apt update -y && sudo apt upgrade -y
-    sudo apt install -y ansible
+if [ ! -f /etc/os-release ]; then
+    echo "Error: Cannot detect the operating system (/etc/os-release not found)"
+    exit 1
 fi
+
+. /etc/os-release
+
+case "$ID $ID_LIKE" in
+    *debian*|*ubuntu*)
+        if ! command -v ansible > /dev/null 2>&1; then
+            sudo apt install -y software-properties-common
+            sudo apt-add-repository -y ppa:ansible/ansible
+            sudo apt update -y && sudo apt upgrade -y
+            sudo apt install -y ansible
+        fi
+        ;;
+    *arch*)
+        if ! command -v ansible > /dev/null 2>&1; then
+            sudo pacman -Syu --needed ansible
+        fi
+        ;;
+    *)
+        echo "Error: Unsupported distribution: ${PRETTY_NAME:-$ID}"
+        echo "Supported distributions: Debian-based or Arch-based"
+        exit 1
+        ;;
+esac
 
 ansible-playbook ansible.yml --ask-become-pass --tags "$1"

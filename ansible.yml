@@ -1,15 +1,20 @@
 - name: Home Setup
   hosts: localhost
   tasks:
-    - import_tasks: tasks/apt.yml
+    - name: Load distribution variables
+      ansible.builtin.include_vars:
+        file: "{{ ansible_os_family | lower }}.yml"
+      tags: always
+
+    - import_tasks: tasks/packages.yml
     - import_tasks: tasks/tmux.yml
-    - import_tasks: tasks/gaming.yml
+    - import_tasks: tasks/wine.yml
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/ghostty.yml
-    - import_tasks: tasks/nvidia.yml
+    - import_tasks: tasks/terminal.yml
+    - import_tasks: tasks/gpu.yml
     - import_tasks: tasks/nerd-font.yml
     - import_tasks: tasks/autocpu-freq.yml
     - import_tasks: tasks/cinnamon.yml
@@ -19,24 +24,34 @@
 - name: Work Setup
   hosts: localhost
   tasks:
-    - import_tasks: tasks/apt.yml
+    - name: Load distribution variables
+      ansible.builtin.include_vars:
+        file: "{{ ansible_os_family | lower }}.yml"
+      tags: always
+
+    - import_tasks: tasks/packages.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
-    - import_tasks: tasks/ghostty.yml
-    - import_tasks: tasks/nvidia.yml
+    - import_tasks: tasks/terminal.yml
+    - import_tasks: tasks/gpu.yml
     - import_tasks: tasks/nerd-font.yml
     - import_tasks: tasks/autocpu-freq.yml
     - import_tasks: tasks/cinnamon.yml
   tags:
     - work
 
-- name: Work Setup
+- name: WSL Setup
   hosts: localhost
   tasks:
-    - import_tasks: tasks/apt.yml
+    - name: Load distribution variables
+      ansible.builtin.include_vars:
+        file: "{{ ansible_os_family | lower }}.yml"
+      tags: always
+
+    - import_tasks: tasks/packages.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/fish.yml

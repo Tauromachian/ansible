@@ -1,0 +1,42 @@
+# Native pacman package names for Arch-based distributions
+wsl_packages: []
+
+desktop_packages:
+  - gpick
+  - gparted
+  - tmux
+  - nala
+  - samba
+  - curl
+  - wget
+  - fastfetch
+  - pciutils
+  - gnu-stow
+  - cmake
+  - gcc
+  - pkgconf
+  - freetype2
+  - fontconfig
+  - libxcb
+  - libxkbcommon
+  - python
+  - fzf
+  - zsh
+  - uidmap
+  - imagemagick
+  # Virtual machine libraries
+  - virt-manager
+  - qemu-desktop
+  - libvirt
+  - bridge-utils
+  # Japanese libraries
+  - noto-fonts-cjk
+  - fcitx5-mozc
+  - fcitx5-gtk
+  - ffmpeg
+
+homebrew_dependencies:
+  - base-devel
+  - curl
+  - git
+  - tar
