@@ -10,6 +10,7 @@
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/wine.yml
     - import_tasks: tasks/flatpak.yml
+    - import_tasks: tasks/flatpak-home.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
@@ -51,7 +52,7 @@
         file: "{{ ansible_facts['os_family'] | lower }}.yml"
       tags: always
 
-    - import_tasks: tasks/packages.yml
+    - import_tasks: tasks/packages-wsl.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/homebrew.yml
     - import_tasks: tasks/fish.yml

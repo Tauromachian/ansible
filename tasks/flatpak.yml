@@ -20,16 +20,6 @@
   loop: "{{ flatpak_apps }}"
   when: ansible_facts['os_family'] == 'Debian'
 
-- name: Install Home Flatpak applications (Debian)
-  flatpak:
-    name: "{{ item }}"
-    state: present
-    remote: flathub
-  loop: "{{ flatpak_home_apps }}"
-  when: ansible_facts['os_family'] == 'Debian'
-  tags:
-    - home
-
 # Arch-based systems install what exists natively and keep the rest on Flatpak
 - name: Install native desktop applications (Arch)
   become: true
@@ -37,16 +27,6 @@
     name: "{{ native_desktop_apps }}"
     state: present
   when: ansible_facts['os_family'] == 'Archlinux'
-  tags: [home, work]
-
-- name: Install native home applications (Arch)
-  become: true
-  community.general.pacman:
-    name: "{{ native_home_apps }}"
-    state: present
-  when: ansible_facts['os_family'] == 'Archlinux'
-  tags:
-    - home
 
 - name: Install Flatpak-only applications (Arch)
   flatpak:
@@ -59,17 +39,3 @@
 - name: Give Brave access to home
   shell: |
     flatpak override --user com.brave.Browser --filesystem=home
-
-- name: Give Telegram access to home
-  shell: |
-    flatpak override --user org.telegram.desktop --filesystem=home
-  when: ansible_facts['os_family'] == 'Debian'
-  tags:
-    - home
-
-- name: Give Discord access to home
-  shell: |
-    flatpak override --user com.discordapp.Discord --filesystem=home
-  when: ansible_facts['os_family'] == 'Debian'
-  tags:
-    - home

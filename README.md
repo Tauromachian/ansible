@@ -70,7 +70,10 @@ On Arch, everything available in the official repositories is installed natively
 
 ```
 install        # Bootstrap script: detects the distro, validates the tag, installs Ansible, runs the playbook
-ansible.yml    # Three plays, tagged home / work / wsl
-tasks/*.yml    # One file per concern; distro-specific ones branch on ansible_facts['os_family']
+ansible.yml    # Three plays, tagged home / work / wsl; each play explicitly lists the task files it uses
+tasks/*.yml    # One file per concern; files shared across plays contain no inner tags, so selection
+               # is decided purely by which play imports them
 vars/*.yml     # Per-family native package name mappings (debian.yml, archlinux.yml)
 ```
+
+Profile-specific behavior lives in dedicated files (`packages-wsl.yml`, `wine.yml`, `flatpak-home.yml`) that only the matching play imports — tags select a play and nothing else.
