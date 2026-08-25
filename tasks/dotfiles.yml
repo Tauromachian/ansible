@@ -11,12 +11,6 @@
     recursive: false
   when: not folder_stat.stat.exists
 
-- name: Remove default .bashrc
-  ansible.builtin.file:
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
-    state: absent
-  when: not folder_stat.stat.exists
-
 - name: Recursively change ownership of a directory
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.dotfiles"
