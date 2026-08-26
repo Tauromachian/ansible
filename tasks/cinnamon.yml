@@ -6,11 +6,6 @@
 - name: Set Cinnamon desktop options
   when: "'cinnamon' in desktop_env | lower"
   block:
-  - name: Create temporary directory for applet downloads
-    ansible.builtin.tempfile:
-      state: directory
-    register: temp_dir
-
   - name: Fetch Cinnamon keybindings into memory
     ansible.builtin.uri:
       url: "https://gist.githubusercontent.com/Tauromachian/dfee93d5708bd9104b5e451450b1f4ae/raw/c7937125a94130b224dea253b4d90cf5491900e7/keybindings.toml"
