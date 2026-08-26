@@ -47,16 +47,14 @@
       state: read
     register: applets_raw
 
-  - name: Parse the raw gsettings output into a proper list
+  - name: Parse the raw dconf output into a proper list
+    vars:
+      raw_value: "{{ applets_raw.value | default('') | string }}"
     ansible.builtin.set_fact:
       current_applets_list: >-
-        {{ applets_raw.value
-           | regex_replace("^@as ", "")
-           | regex_replace("'", '"')
-           | from_json
-           | default([])
-        }}
-        
+        {{ (raw_value | regex_replace('^@as ', '') | regex_replace("'", '"')) | from_json
+           if (raw_value | trim | length > 0) else [] }}
+
   - name: Download settings
     ansible.builtin.get_url:
       url: "https://gist.githubusercontent.com/Tauromachian/8c40ee3dc28640d59023dccf179b02b5/raw/f266d2d68d9c72cca866e18eab73432cc439acc4/auto-dark-light@gihaume.json"
