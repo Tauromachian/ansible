@@ -11,15 +11,17 @@
       state: directory
     register: temp_dir
 
-  - name: Download Cinnamon keybindings
-    ansible.builtin.get_url: 
+  - name: Fetch Cinnamon keybindings into memory
+    ansible.builtin.uri:
       url: "https://gist.githubusercontent.com/Tauromachian/dfee93d5708bd9104b5e451450b1f4ae/raw/c7937125a94130b224dea253b4d90cf5491900e7/keybindings.toml"
-      dest: "{{ temp_dir.path }}/dconf-keybindings"
-      mode: '0644'
+      return_content: true
+    register: keybindings
 
   - name: Load keybindings
-    ansible.builtin.shell: |
-      dconf load /org/cinnamon/desktop/keybindings/ < {{ temp_dir.path }}/dconf-keybindings
+    ansible.builtin.command:
+      cmd: dconf load /org/cinnamon/desktop/keybindings/
+      stdin: "{{ keybindings.content }}"
+    changed_when: false
 
   - name: Download Cinnamon applets from Spices
     ansible.builtin.get_url:
