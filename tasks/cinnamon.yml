@@ -16,6 +16,7 @@
     ansible.builtin.command:
       cmd: dconf load /org/cinnamon/desktop/keybindings/
       stdin: "{{ keybindings.content }}"
+    when: keybindings.content is defined
     changed_when: false
 
   - name: Download Cinnamon applets from Spices
