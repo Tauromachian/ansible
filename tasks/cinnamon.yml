@@ -22,7 +22,7 @@
   - name: Download Cinnamon applet from Spices
     ansible.builtin.get_url:
       url: "https://cinnamon-spices.linuxmint.com/files/applets/auto-dark-light@gihaume.zip"
-      dest: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
+      dest: "/tmp/auto-dark-light@gihaume.zip"
       mode: '0644'
 
   - name: Install downloaded applets to the user directory
