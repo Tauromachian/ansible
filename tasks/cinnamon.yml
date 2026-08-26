@@ -32,9 +32,10 @@
 
   - name: Install downloaded applet to the user directory
     ansible.builtin.unarchive:
-      src: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
+      src: "/tmp/auto-dark-light@gihaume.zip"
       dest: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/"
       creates: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/auto-dark-light@gihaume"
+    when: applet_zip.stat.exists
 
   - name: Ensure ~/.config/cinnamon/spices/auto-dark-light@gihaume exists
     ansible.builtin.file:
