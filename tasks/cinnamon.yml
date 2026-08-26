@@ -25,7 +25,12 @@
       dest: "/tmp/auto-dark-light@gihaume.zip"
       mode: '0644'
 
-  - name: Install downloaded applets to the user directory
+  - name: Locate applet archive
+    ansible.builtin.stat:
+      path: "/tmp/auto-dark-light@gihaume.zip"
+    register: applet_zip
+
+  - name: Install downloaded applet to the user directory
     ansible.builtin.unarchive:
       src: "{{ temp_dir.path }}/auto-dark-light@gihaume.zip"
       dest: "{{ lookup('env', 'HOME') }}/.local/share/cinnamon/applets/"
