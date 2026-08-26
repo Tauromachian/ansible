@@ -51,7 +51,7 @@
 
   - name: Parse the raw dconf output into a proper list
     vars:
-      raw_value: "{{ applets_raw.value | default('') | string }}"
+      raw_value: "{{ (applets_raw.value | default('', true)) | string }}"
     ansible.builtin.set_fact:
       current_applets_list: >-
         {{ (raw_value | regex_replace('^@as ', '') | regex_replace("'", '"')) | from_json
