@@ -66,6 +66,8 @@
   - name: Enable the Automatic dark/light themes applet
     community.general.dconf:
       key: /org/cinnamon/enabled-applets
+      # ':18' is the applet instance index Cinnamon assigned on install; it is
+      # stable on existing machines but may differ after a manual reinstall.
       value: >-
         {{ (current_applets_list + ['panel1:right:0:auto-dark-light@gihaume:18'])
            | unique
