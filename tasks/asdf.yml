@@ -1,0 +1,25 @@
+- name: Resolve asdf binary (Homebrew prefix)
+  ansible.builtin.set_fact:
+    asdf_bin: /home/linuxbrew/.linuxbrew/bin/asdf
+
+- name: Configure asdf nodejs (plugin, install, set global)
+  block:
+    - name: List installed asdf plugins
+      ansible.builtin.command: "{{ asdf_bin }} plugin list"
+      register: asdf_plugin_list
+      changed_when: false
+
+    - name: Add asdf nodejs plugin
+      ansible.builtin.command:
+        cmd: "{{ asdf_bin }} plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git"
+      when: "'nodejs' not in asdf_plugin_list.stdout_lines"
+
+    - name: Install latest LTS nodejs via asdf
+      ansible.builtin.command: "{{ asdf_bin }} install nodejs lts"
+
+    - name: Set nodejs LTS as global asdf version
+      ansible.builtin.shell: |
+        {{ asdf_bin }} set -u nodejs lts 2>/dev/null || {{ asdf_bin }} global nodejs lts
+      changed_when: false
+  environment:
+    PATH: /home/linuxbrew/.linuxbrew/bin:{{ ansible_facts.env.PATH }}

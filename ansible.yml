@@ -12,6 +12,7 @@
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/flatpak-home.yml
     - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/terminal.yml
@@ -34,6 +35,7 @@
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/flatpak.yml
     - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/terminal.yml
@@ -55,6 +57,7 @@
     - import_tasks: tasks/packages-wsl.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/homebrew.yml
+    - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fish.yml
     - import_tasks: tasks/dotfiles.yml
   tags:
