@@ -53,6 +53,7 @@ desktop_packages:
   - fcitx5-frontend-gtk3
   - ffmpeg
   - eza
+  - chromium
 
 # Flatpak applications (all profiles)
 flatpak_apps:
