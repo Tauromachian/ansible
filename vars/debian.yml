@@ -54,6 +54,7 @@ desktop_packages:
   - ffmpeg
   - eza
   - chromium
+  - xclip
 
 # Flatpak applications (all profiles)
 flatpak_apps:

@@ -33,6 +33,7 @@ desktop_packages:
   - ffmpeg
   - eza
   - chromium
+  - xclip
 
 # Flatpak applications that exist natively, installed with pacman instead
 native_desktop_apps:
