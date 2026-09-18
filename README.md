@@ -42,7 +42,7 @@ On Arch, everything available in the official repositories is installed natively
 
 ### Base (all profiles)
 
-- Native packages (APT or pacman): tmux, curl, wget, stow, cmake, gcc, fzf, zsh, imagemagick, ffmpeg, etc.
+- Native packages (APT or pacman): tmux, curl, wget, stow, cmake, gcc, fzf, imagemagick, ffmpeg, etc.
 - Homebrew: podman, podman-compose, neovim, starship, ripgrep, yt-dlp, fd, asdf, fish, opencode, workmux
   - On Arch these come from pacman instead, except `workmux` and `asdf` which have no native package and stay on Homebrew
 - [fish](https://fishshell.com/) set as default login shell (from Homebrew on Debian-based systems; pacman's `/usr/bin/fish` on Arch)

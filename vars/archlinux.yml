@@ -20,7 +20,6 @@ desktop_packages:
   - libxkbcommon
   - python
   - fzf
-  - zsh
   - imagemagick
   # Virtual machine libraries
   - virt-manager
