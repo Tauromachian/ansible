@@ -66,12 +66,14 @@ native_brew_alternatives:
   - fd
   - fish
   - opencode
+  - tree-sitter-cli
 
 # Homebrew packages with no native equivalent (asdf exists in AUR only,
 # workmux only ships through its Homebrew tap)
 brew_packages:
   - workmux
   - asdf
+  - tree-sitter-cli
 
 homebrew_dependencies:
   - base-devel
